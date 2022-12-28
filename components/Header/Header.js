@@ -1,4 +1,5 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import Link from "next/link";
 const Header = () => {
   return (
     <div className="dark">
@@ -14,13 +15,18 @@ const Header = () => {
           </span>
         </Navbar.Brand>
         <Navbar.Collapse>
-          <Navbar.Link href="/navbars" active={true}>
+          <Link href={"/"} className="text-white hover:text-gray-500">
             Home
-          </Navbar.Link>
-          <Navbar.Link href="/navbars">About</Navbar.Link>
-          <Navbar.Link href="/navbars">Services</Navbar.Link>
-          <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-          <Navbar.Link href="/navbars">Contact</Navbar.Link>
+          </Link>
+          <Link href={"/add-task"} className="text-white hover:text-gray-500">
+            Add Task
+          </Link>
+          <Link href={"/add-task"} className="text-white hover:text-gray-500">
+            My Task
+          </Link>
+          <Link href={"/add-task"} className="text-white hover:text-gray-500">
+            Completed Task
+          </Link>
         </Navbar.Collapse>
         <div className="flex md:order-2">
           <Dropdown
