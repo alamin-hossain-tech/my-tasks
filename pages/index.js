@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>HOME | MY TASKS</title>
       </Head>
       <div className="dark h-screen py-5 container mx-auto">
         <div className="max-w-sm ">

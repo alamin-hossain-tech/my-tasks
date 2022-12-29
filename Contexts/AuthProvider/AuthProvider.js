@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
