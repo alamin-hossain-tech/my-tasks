@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "13.1.1",
+    "@tanstack/react-query": "^4.20.4",
     "firebase": "^9.15.0",
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",

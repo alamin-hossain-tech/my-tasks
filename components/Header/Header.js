@@ -33,10 +33,13 @@ const Header = () => {
             <Link href={"/add-task"} className="text-white hover:text-gray-500">
               Add Task
             </Link>
-            <Link href={"/add-task"} className="text-white hover:text-gray-500">
-              My Task
+            <Link href={"/my-tasks"} className="text-white hover:text-gray-500">
+              My Tasks
             </Link>
-            <Link href={"/add-task"} className="text-white hover:text-gray-500">
+            <Link
+              href={"/complete-tasks"}
+              className="text-white hover:text-gray-500"
+            >
               Completed Task
             </Link>
           </Navbar.Collapse>
