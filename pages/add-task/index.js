@@ -40,6 +40,7 @@ const AddTask = () => {
             task_image: imageData.data.url,
             published_time: new Date(),
             userEmail: user.email,
+            complete: "false",
           };
           fetch("http://localhost:4000/add-task", {
             method: "POST",

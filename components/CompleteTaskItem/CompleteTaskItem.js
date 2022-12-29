@@ -1,6 +1,6 @@
-import { Button } from "flowbite-react";
+import { Badge, Button } from "flowbite-react";
 
-const TaskItem = ({ task, index, handleComplete }) => {
+const CompleteTaskItem = ({ task, index, handleInComplete }) => {
   return (
     <div className="my-4">
       <div className="grid grid-cols-12 gap-5 p-3 items-center  bg-gray-800 text-white rounded">
@@ -10,13 +10,16 @@ const TaskItem = ({ task, index, handleComplete }) => {
         </div>
         <div className="col-span-7">{task.task_name}</div>
         <div>
-          <Button onClick={() => handleComplete(task._id)}>Complete</Button>
+          <Badge color="success">Completed</Badge>
         </div>
-        <div>edit</div>
-        <div>delete</div>
+        <div>
+          <Button color={"failure"} onClick={() => handleInComplete(task._id)}>
+            Incomplete
+          </Button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default TaskItem;
+export default CompleteTaskItem;

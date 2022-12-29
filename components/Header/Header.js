@@ -21,11 +21,11 @@ const Header = () => {
     <div className="dark bg-gray-800">
       <div className="container mx-auto">
         <Navbar fluid={true}>
-          <Navbar.Brand href="https://flowbite.com/">
+          <Link href="/">
             <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
               My Tasks
             </span>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Collapse>
             <Link href={"/"} className="text-white hover:text-gray-500">
               Home
