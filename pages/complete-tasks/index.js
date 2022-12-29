@@ -50,7 +50,7 @@ const CompleteTasks = () => {
           </div>
         )}
         {isLoading && (
-          <div className="h-screen">
+          <div className="h-screen flex justify-center ">
             <Spinner></Spinner>
           </div>
         )}
