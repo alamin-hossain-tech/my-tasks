@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "flowbite-react";
+import Router, { useRouter } from "next/router";
 import React, { useContext } from "react";
 import CompleteTaskItem from "../../Components/CompleteTaskItem/CompleteTaskItem";
 import TaskItem from "../../Components/TaskItem/TaskItem";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const CompleteTasks = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const {
     data = [],
     refetch,
@@ -20,6 +21,10 @@ const CompleteTasks = () => {
   });
   if (!user) {
     refetch();
+  }
+  const router = useRouter();
+  if (!user && !loading) {
+    router.push("/login");
   }
   const handleInComplete = (id) => {
     fetch(`http://localhost:4000/task-complete?id=${id}&state=false`, {

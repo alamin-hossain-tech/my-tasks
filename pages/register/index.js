@@ -68,11 +68,11 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 h-screen">
       <Head>
         <title>Register</title>
       </Head>
-      <div className="text-center text-white py-5">
+      <div className="text-center text-white pt-12 pb-5">
         <h1 className="text-4xl">Register</h1>
       </div>
       <div className=" w-1/2 mx-auto">
