@@ -1,7 +1,7 @@
 import { Button, FileInput, Label, Spinner, TextInput } from "flowbite-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "react-hot-toast";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -10,7 +10,7 @@ const AddTask = () => {
   const { user, loading } = useContext(AuthContext);
   const router = useRouter();
 
-  if (!user) {
+  if (!user && !loading) {
     router.push("/login");
   }
   const {
@@ -20,10 +20,45 @@ const AddTask = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const imghostkey = process.env.NEXT_PUBLIC_ANALYTICS_imgbb;
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
-    toast.success("Success");
+    setIsLoading(true);
+    const image = data.task_media[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imghostkey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        if (imageData.success) {
+          const task = {
+            task_name: data.task_name,
+            task_image: imageData.data.url,
+            published_time: new Date(),
+            userEmail: user.email,
+          };
+          fetch("http://localhost:4000/add-task", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(task),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              toast.success("Added");
+              reset();
+              setIsLoading(false);
+            });
+        } else {
+          toast.error("Provide a Valid image file");
+          setIsLoading(false);
+        }
+      });
   };
 
   return (
@@ -49,16 +84,16 @@ const AddTask = () => {
                 <div className="mb-2 block">
                   <Label
                     className="text-white"
-                    htmlFor="email1"
-                    value="Your email"
+                    htmlFor="task"
+                    value="Task Name"
                   />
                 </div>
                 <TextInput
-                  id="email1"
-                  type="email"
-                  placeholder="name@flowbite.com"
+                  id="task"
+                  type="text"
+                  placeholder="i.e : Do shopping"
                   required={true}
-                  {...register("name")}
+                  {...register("task_name")}
                 />
               </div>
               <div id="fileUpload">
@@ -66,12 +101,17 @@ const AddTask = () => {
                   <Label
                     className="text-white"
                     htmlFor="file"
-                    value="Upload file"
+                    value="Upload media file"
                   />
                 </div>
-                <FileInput id="file" />
+                <FileInput id="file" {...register("task_media")} />
               </div>
-
+              {isLoading && (
+                <Spinner
+                  aria-label="Center-aligned spinner example"
+                  className="my-4"
+                />
+              )}
               <Button type="submit">Add Task</Button>
             </form>
             <Toaster />
