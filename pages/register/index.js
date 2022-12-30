@@ -18,12 +18,10 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const imghostkey = process.env.NEXT_PUBLIC_ANALYTICS_imgbb;
-  console.log(imghostkey);
   const { createUser, updateUserProfile, providerLogin } =
     useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
-  const [createdEmail, setCreatedEmail] = useState("");
 
   const handleUpdateUserProfile = (name, photoURL) => {
     const profile = {
@@ -64,6 +62,19 @@ const Register = () => {
               setIsLoading(false);
             });
         }
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+      .then((res) => {
+        toast.success("Succesfully Logged in");
+        setTimeout(() => {
+          router.push("/add-task");
+        }, 1000);
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
   };
 
@@ -154,7 +165,7 @@ const Register = () => {
         <Toaster />
       </div>
       <div className="py-5 pb-8">
-        <Button className="mx-auto">
+        <Button className="mx-auto" onClick={handleGoogleLogin}>
           <FcGoogle className="text-2xl mr-2"></FcGoogle> Google Sign up
         </Button>
       </div>

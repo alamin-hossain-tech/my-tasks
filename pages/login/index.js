@@ -23,7 +23,6 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
       .then((res) => {
         setLoading(false);
@@ -32,7 +31,7 @@ const Login = () => {
         // navigate(from, { replace: true });
         setTimeout(() => {
           router.push("/add-task");
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         console.error(error);
@@ -41,6 +40,19 @@ const Login = () => {
             ? "Wrong Password"
             : error.message
         );
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+      .then((res) => {
+        toast.success("Succesfully Logged in");
+        setTimeout(() => {
+          router.push("/add-task");
+        }, 1000);
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
   };
 
@@ -99,7 +111,7 @@ const Login = () => {
         <Toaster />
       </div>
       <div className="py-5 pb-8">
-        <Button className="mx-auto">
+        <Button className="mx-auto" onClick={handleGoogleLogin}>
           <FcGoogle className="text-2xl mr-2"></FcGoogle> Google Sign in
         </Button>
       </div>
