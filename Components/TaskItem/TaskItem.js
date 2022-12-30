@@ -44,13 +44,16 @@ const TaskItem = ({ task, index, handleComplete, refetch }) => {
             task_name: data.task_name,
             task_image: imageData.data.url,
           };
-          fetch(`http://localhost:4000/task/edit/${task._id}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(update),
-          })
+          fetch(
+            `https://my-tasks-server-chi.vercel.app/task/edit/${task._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(update),
+            }
+          )
             .then((res) => res.json())
             .then((result) => {
               toast.success("Updated");
@@ -67,7 +70,7 @@ const TaskItem = ({ task, index, handleComplete, refetch }) => {
   };
 
   const handleDelete = () => {
-    fetch(`http://localhost:4000/task/delete/${task._id}`, {
+    fetch(`https://my-tasks-server-chi.vercel.app/task/delete/${task._id}`, {
       method: "POST",
       headers: {
         "content-type": "aplication/json",

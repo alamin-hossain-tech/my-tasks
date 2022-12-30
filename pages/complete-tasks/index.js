@@ -16,7 +16,9 @@ const CompleteTasks = () => {
     queryKey: [user?.email],
     queryFn: () =>
       fetch(
-        `http://localhost:4000/tasks?email=${user?.email}&state=${true}`
+        `https://my-tasks-server-chi.vercel.app/tasks?email=${
+          user?.email
+        }&state=${true}`
       ).then((res) => res.json()),
   });
   if (!user) {
@@ -27,9 +29,12 @@ const CompleteTasks = () => {
     router.push("/login");
   }
   const handleInComplete = (id) => {
-    fetch(`http://localhost:4000/task-complete?id=${id}&state=false`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://my-tasks-server-chi.vercel.app/task-complete?id=${id}&state=false`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => {
         refetch();
       })
@@ -66,13 +71,3 @@ const CompleteTasks = () => {
 };
 
 export default CompleteTasks;
-
-// export async function getServerSideProps() {
-//   const res = await fetch(`http://localhost:4000/tasks/developer@sgserver.me`);
-//   const data = await res.json();
-//   return {
-//     props: {
-//       tasks: data,
-//     },
-//   };
-// }

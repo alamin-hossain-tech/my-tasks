@@ -7,7 +7,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 const CompleteTaskItem = ({ task, index, handleInComplete, refetch }) => {
   const [confirmVisible, setConfirmVisible] = useState(false);
   const handleDelete = () => {
-    fetch(`http://localhost:4000/task/delete/${task._id}`, {
+    fetch(`https://my-tasks-server-chi.vercel.app/task/delete/${task._id}`, {
       method: "POST",
       headers: {
         "content-type": "aplication/json",

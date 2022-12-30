@@ -42,7 +42,7 @@ const AddTask = () => {
             userEmail: user.email,
             complete: "false",
           };
-          fetch("http://localhost:4000/add-task", {
+          fetch("https://my-tasks-server-chi.vercel.app/add-task", {
             method: "POST",
             headers: {
               "content-type": "application/json",
