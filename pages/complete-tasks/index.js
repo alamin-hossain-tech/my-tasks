@@ -47,6 +47,7 @@ const CompleteTasks = () => {
             task={task}
             index={i}
             handleInComplete={handleInComplete}
+            refetch={refetch}
           ></CompleteTaskItem>
         ))}
         {data.length === 0 && (

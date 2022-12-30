@@ -50,9 +50,9 @@ const Login = () => {
         <title>Login</title>
       </Head>
       <div className="text-center text-white pt-12 pb-5">
-        <h1 className="text-4xl">Login</h1>
+        <h1 className="text-xl lg:text-4xl">Login</h1>
       </div>
-      <div className=" w-1/2 mx-auto">
+      <div className="w-11/12 lg:w-1/2 mx-auto">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className="mb-2 block">

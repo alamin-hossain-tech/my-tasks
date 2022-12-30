@@ -74,9 +74,9 @@ const AddTask = () => {
       ) : (
         <div className="bg-gray-900">
           <div className="text-center text-white py-5">
-            <h1 className="text-4xl">Add Task</h1>
+            <h1 className="text-xl lg:text-4xl">Add Task</h1>
           </div>
-          <div className=" w-1/2 mx-auto h-screen">
+          <div className=" w-11/12 lg:w-1/2 mx-auto h-screen">
             <form
               className="flex flex-col gap-4"
               onSubmit={handleSubmit(onSubmit)}
